@@ -9,14 +9,12 @@ int main(){
     int tam = sizeof(a) / sizeof(a[0]);
 
     for (int i=0; i<tam; i++){
-        cout << "i = " << i << endl;
-//        cout << "v = " << a[i] << endl;
+       cout << "v = " << a[i] << endl;
     }
     
+    //Conta tempo
     auto fim = chrono::system_clock::now();
-
-    chrono::duration<double>time = fim-ini; 
-
+    auto time = chrono::duration_cast<chrono::milliseconds>(fim - ini);
     cout << "Tempo: " << time.count();
 
     return 0;
