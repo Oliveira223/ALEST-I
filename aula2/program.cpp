@@ -20,9 +20,16 @@ int main(){
     ofstream arquivo("saida.csv");
 
     for(int n = 1; n < 1000; n++){
-        arquivo << "texo no arquivo";
-        cout << "f1() = " << f.f1(n) << endl;
+        arquivo << f.f1(n) << "; ";
     }
+
+    arquivo << endl;
+
+    for(int n = 1; n < 1000; n++){
+        arquivo << f.f2(n) << "; ";
+    }
+
+    arquivo << endl;
 
     arquivo.close();
 
