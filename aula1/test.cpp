@@ -35,7 +35,7 @@ int main(){
     //====================================================
     cout << "Complexidade N²" << endl;
     auto ini = chrono::high_resolution_clock::now();    
-    int a[2] = {};
+    int a[3] = {};
     int tam = sizeof(a) / sizeof(a[0]);
 
     inter = 0;
