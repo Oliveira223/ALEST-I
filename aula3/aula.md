@@ -1,4 +1,5 @@
 # Limites Assintóticos
+Aula 3 - 7/8
 
 ## Exemplos:
 ### Busca Linear
