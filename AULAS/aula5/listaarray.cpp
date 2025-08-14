@@ -78,7 +78,12 @@ void ListArray::clear(){
     tamVet = TAM_PADRAO;
     count = 0;
     delete[] data; // Libera os dados da lista antiga - free(data);
-    data =  new int[tamVet]; // Aloca a lista nova - data = (int*) malloc( sizeof(int) * tamVet );
+    data =  new int[tamVet](); // Aloca a lista nova - data = (int*) malloc( sizeof(int) * tamVet );
+
+    // for(int i = 0; i < tamVet; i++){
+    // data[i] = 0;
+    // }
+
 }
 
 // Retorna true se a lista nao contem elementos, e false caso contrario.
