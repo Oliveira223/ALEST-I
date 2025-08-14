@@ -1,7 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <math.h>
 #include <stdlib.h>
-#include "ListTAD.h"
+
+#include "ListTAD.h" 
 
 using namespace std;
 
@@ -18,21 +20,26 @@ class ListArray : public ListTAD {
         int *data;
         int count; //quantidade de itens (sempre no ultimo elemento)
         int tamVet;
+
     public:
+
+        // Construtor
         ListArray();
         ListArray(int tam);
-        void clear();
-        bool isEmpty();
-        int size();
-        void add(int element);
-        void add(int element, int pos);
-        int get(int index);
-        bool remove(int element);
-        int indexOf(int element);
-        void setCapacity(int newCapacity);
-        int set(int index, int element);
-        bool contains(int element);
-        int capacity();
+
+        void    print();                     //done
+        void    clear();
+        bool    isEmpty();
+        int     size();
+        void    add(int element);            //done
+        void    add(int element, int pos);   //done
+        int     get(int index);
+        bool    remove(int element);
+        int     indexOf(int element);
+        void    setCapacity(int newCapacity);
+        int     set(int index, int element);
+        bool    contains(int element);
+        int     capacity();
 };
 
 // Construtor
@@ -51,6 +58,19 @@ ListArray::ListArray(int tam) {
     }
     data = new int[tamVet]; // data = (int*) malloc( sizeof(int) * tamVet );
     count = 0;
+}
+
+// Imprimir Lista
+void ListArray::print(){
+    cout << "Lista = [ ";
+
+    for(int i = 0; i < tamVet; i++){
+    cout << setw(2) << data[i] <<  ", ";
+    }
+
+    cout << "\b\b ]" << endl;  //tira a ultima virgula
+
+
 }
 
 // Esvazia a lista.
@@ -82,7 +102,28 @@ void ListArray::add(int element) {
 }
 
 void ListArray::add(int element, int pos){
-    data[pos] = element;
+
+    //antes do count
+    if(pos < count){        
+        for(int i = count; i > pos - 1; i--){ 
+        data[i+1] = data[i];
+        data[i] = data [i+1];
+        }
+        data[pos] = element;
+        count++;
+    }
+
+    //no count (espaço vazio)
+    else if(pos == count){
+        data[count] = element;
+        count++;
+    }
+
+
+    //Depois do count
+    else {
+        data[pos] = element;
+    }
 }
 
 // Retorna o elemento de uma determinada posicao da lista.
@@ -139,6 +180,8 @@ int ListArray::set(int index, int element) {
 // Consulta
 bool ListArray::contains(int element) {
    // Implemente este metodo
+
+   return false;
 }
 
 /**
@@ -149,6 +192,8 @@ bool ListArray::contains(int element) {
  */
 bool ListArray::remove(int element) {
     // Implemente
+
+    return false;
 }
 
 int ListArray::capacity() {
@@ -163,6 +208,8 @@ int ListArray::capacity() {
  */
 int ListArray::indexOf(int element) {
     // Implemente
+
+    return 0;
 }
 
 // ******************************************
@@ -172,12 +219,30 @@ int main()
 {
         ListArray lista;
 
+        lista.print();
+
         lista.add(2);
         lista.add(4);
         lista.add(6);
         lista.add(8);
         lista.add(10);
+        lista.add(12);
+        lista.add(14);
 
-        cout << "Elemento armazenado na primeira posicao da lista: " << lista.get(0) << endl;
-        cout << "Elemento armazenado na ultima posicao da lista: " << lista.get(lista.size()-1) << endl;
+
+        lista.print();
+        lista.add(7, 3);
+        lista.print();
+        lista.add(15, 8);
+        lista.print();
+        lista.add(17, 9);
+        //lista.print();
+
+        cout << endl;
+
+        lista.clear();
+        lista.print();
+        
+//        cout << "Elemento armazenado na primeira posicao da lista: " << lista.get(0) << endl;
+//        cout << "Elemento armazenado na ultima posicao da lista: " << lista.get(lista.size()-1) << endl;
 }

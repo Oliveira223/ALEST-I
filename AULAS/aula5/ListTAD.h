@@ -4,6 +4,7 @@
 
 class ListTAD {
     public:
+        virtual void print() = 0;
         virtual void add(int element) = 0;
         virtual void add(int element, int pos) = 0;
         virtual int get(int index) = 0;
