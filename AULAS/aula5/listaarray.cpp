@@ -7,8 +7,6 @@
 
 using namespace std;
 
-//LISTA = [i], [i+3], [i+2]
-
 #define TAM_PADRAO 10
 
 // ******************************************
@@ -28,17 +26,17 @@ class ListArray : public ListTAD {
         ListArray(int tam);
 
         void    print();                     //done
-        void    clear();
+        void    clear();                     //done
         bool    isEmpty();
         int     size();
         void    add(int element);            //done
         void    add(int element, int pos);   //done
-        int     get(int index);
+        int     get(int index);              //done
         bool    remove(int element);
-        int     indexOf(int element);
+        int     indexOf(int element);        //done
         void    setCapacity(int newCapacity);
         int     set(int index, int element);
-        bool    contains(int element);
+        bool    contains(int element);       //done
         int     capacity();
 };
 
@@ -134,7 +132,7 @@ void ListArray::add(int element, int pos){
 // Retorna o elemento de uma determinada posicao da lista.
 int ListArray::get(int index) {
     if (index<0 || index>=count) {
-        throw 0;
+        throw 0; // Erro (index < 0 ou maior/igual ao count)
     }
     return data[index];
 }
@@ -184,7 +182,9 @@ int ListArray::set(int index, int element) {
 
 // Consulta
 bool ListArray::contains(int element) {
-   // Implemente este metodo
+   for(int i = 0; i < tamVet; i++){
+        if(data[i] == element) return true;
+   }
 
    return false;
 }
@@ -212,9 +212,13 @@ int ListArray::capacity() {
  * @return posição se encontrado, -1 se não encontrado
  */
 int ListArray::indexOf(int element) {
-    // Implemente
+    for(int i = 0; i < tamVet; i++){
+        if(data[i] == element) return i;
+    }
 
-    return 0;
+    return -1;
+
+
 }
 
 // ******************************************
@@ -222,31 +226,37 @@ int ListArray::indexOf(int element) {
 // ******************************************
 int main()
 {
-        ListArray lista;
+    ListArray lista;
+    int x = 0;
 
-        lista.print();
+    lista.print();
+    lista.add(2);
+    lista.add(4);
+    lista.add(6);
+    lista.add(8);
+    lista.add(10);
+    lista.add(12);
+    lista.add(14);
 
-        lista.add(2);
-        lista.add(4);
-        lista.add(6);
-        lista.add(8);
-        lista.add(10);
-        lista.add(12);
-        lista.add(14);
 
+    lista.print();
+    lista.add(7, 3);
+    lista.print();
+    lista.add(15, 8);
+    lista.print();
+    lista.add(17, 9);
+    lista.print();
+    cout << endl;
 
-        lista.print();
-        lista.add(7, 3);
-        lista.print();
-        lista.add(15, 8);
-        lista.print();
-        lista.add(17, 9);
-        //lista.print();
+    cout << " > Elemento na posição 2: " << lista.get(2) << endl << endl;
 
-        cout << endl;
+    cout << " > Tem o elemento 6? " << lista.contains(6) << endl << endl;
 
-        lista.clear();
-        lista.print();
+    cout << " > Index de 6" << " = " << lista.indexOf(6) << endl << endl; 
+
+    cout << "Lista limpa" << endl;
+    lista.clear();
+    lista.print();
         
 //        cout << "Elemento armazenado na primeira posicao da lista: " << lista.get(0) << endl;
 //        cout << "Elemento armazenado na ultima posicao da lista: " << lista.get(lista.size()-1) << endl;
