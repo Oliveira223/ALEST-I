@@ -37,7 +37,7 @@ class ListArray : public ListTAD {
         void    setCapacity(int newCapacity); //already done
         int     set(int index, int element);  //done
         bool    contains(int element);        //done
-        int     capacity();
+        int     capacity();                   //already done
 };
 
 // Construtor
@@ -164,6 +164,8 @@ void ListArray::setCapacity(int newCapacity) {
 
 
 int ListArray::set(int index, int element) {
+    if(index < 0 || index >= size()) throw 0;
+    
     int tmp = data[index];
     data[index] = element;
 
@@ -193,15 +195,22 @@ bool ListArray::contains(int element) {
  * @return true se conseguir remover
  */
 bool ListArray::remove(int element) {
+    // Procura Valor
     for(int i = 0; i < tamVet; i++){
         if(data[i] == element){
-            data[i] = 0;
+            data[i] = 0;  // Remove Valor
+            for(int j = i; j < count - 1; j++){
+            data[i] = data[i+1];
+            }
+            data[count - 1] = 0; //Limpa ultimo elemento
             return true;
         }
     }
 
+    cout << "Não encontrado!" << endl;
     return false;
 }
+
 
 int ListArray::capacity() {
     return tamVet;
@@ -214,13 +223,21 @@ int ListArray::capacity() {
  * @return posição se encontrado, -1 se não encontrado
  */
 int ListArray::indexOf(int element) {
+    bool flag = 0;
+    int index;
     for(int i = 0; i < tamVet; i++){
-        if(data[i] == element) return i;
-    }
+        if(data[i] == element){
+            flag = 1;
+            index = i;
+            break;
+        }    
+    } 
 
-    return -1;
-
-
+    if(flag == 0){
+        //throw -1;
+        cout << "Não encontrado;" << endl;
+        return -1;
+    } else return index;
 }
 
 // ******************************************
@@ -250,20 +267,21 @@ int main()
     cout << endl;
 
     cout << " > Tamanho da lista: "      << lista.size()      << endl << endl;
-  
     cout << " > Elemento na posição 2: " << lista.get(2)      << endl << endl;
-
     cout << " > Tem o elemento 6? "      << lista.contains(6) << endl << endl;
-
+    cout << " > Index de 5" << " = "     << lista.indexOf(5)  << endl << endl; 
     cout << " > Index de 6" << " = "     << lista.indexOf(6)  << endl << endl; 
 
-    cout << "Removendo 6 da lista..."                      << endl;
+    cout << "Removendo 6 da lista...\n";
     lista.print();
-    if(lista.remove(6) == 1) {
-        lista.print();
-    } else{ 
-        cout << "6 não está na lista.";
-    }
+    lista.remove(6);
+    lista.print();
+    cout << endl;
+
+    cout << "Removendo 5 da lista...\n";
+    lista.print();
+    lista.remove(5);
+  
     cout << endl;
 
     cout << "Trocando o primeiro elemento por 1: "  << endl;
