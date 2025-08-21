@@ -16,6 +16,16 @@ ListSingleLinked::ListSingleLinked()
     this ->  tail  = nullptr;
 }
 
+void ListSingleLinked::print(){
+
+    Node* tmp = head;
+    for(int i = 0; i < count; i++){
+        cout << "[ " << tmp->element << " ]-> ";
+        tmp = tmp -> next;     // Encontra a posição do index
+    }
+    cout<< "NULL" << endl;      
+}
+
 /**
 * Esvazia a lista.
 */
@@ -146,15 +156,10 @@ int ListSingleLinked::set(int index, int element)
     for(int i = 0; i < index; i++){
         atual = atual -> next;     // Encontra a posição do index
     }
+    int tmp = atual->element;
+    atual->element = element;
 
-    
-
-
-
-
-
-
-
+    return tmp;
 }
 
 /**
@@ -176,6 +181,9 @@ bool ListSingleLinked::contains(int element)
  */
 bool ListSingleLinked::remove(int element)
 {
+
+    return 0;
+
 }
 
 /**
@@ -190,6 +198,8 @@ int ListSingleLinked::removeByIndex(int index)
     {
         throw "Índice inválido!";
     }
+
+    return 0;
 }
 
 /**
@@ -200,6 +210,7 @@ int ListSingleLinked::removeByIndex(int index)
  */
 int ListSingleLinked::indexOf(int element)
 {
+    return 0;
 }
 
 string ListSingleLinked::toString()

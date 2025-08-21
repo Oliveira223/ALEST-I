@@ -1,3 +1,4 @@
+#$ make
 all: app
 
 app: app.o ListSingleLinked.o Node.o
@@ -14,3 +15,4 @@ Node.o: Node.cpp
 
 clean:
 	@rm -f app ListSingleLinked.o Node.o app.o
+

@@ -19,6 +19,7 @@ class ListSingleLinked : public ListTAD {
     
 public:
     ListSingleLinked();
+    void    print();
     void    add(int element);
     void    add(int index, int element);
     int     get(int index);
