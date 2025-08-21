@@ -18,7 +18,7 @@ ListSingleLinked::ListSingleLinked()
 
 void ListSingleLinked::print(){
     
-    cout << "[PRINT] ";
+    cout << "\n[PRINT] ";
     if(head == nullptr){
         cout << "A lista está vazia" << endl;
         return;
@@ -29,7 +29,7 @@ void ListSingleLinked::print(){
         cout << "[ " << tmp->element << " ]-> ";
         tmp = tmp -> next;     // Encontra a posição do index
     }
-    cout<< "NULL" << endl;      
+    cout<< "NULL\n" << endl;      
 }
 
 /**
@@ -100,6 +100,7 @@ void ListSingleLinked::add(int element)
 */
 void ListSingleLinked::add(int index, int element)
 {
+    cout << "[ADD1] Adicionando " << element << " no index " << index << endl;
     if ((index < 0) || (index > count))
     {
         throw "Índice inválido";
@@ -140,16 +141,19 @@ void ListSingleLinked::add(int index, int element)
 */
 int ListSingleLinked::get(int index)
 {
+
     if (index < 0 || index >= count)
     {
-        throw "Índice inválido";
+        cout << "[GET] Índice inválido";
+        return -1;
     }
+
+    cout << "[GET] Elemento no index " << index << ": ";
 
     Node* atual = head;
     for(int i = 0; i < index; i++){
         atual = atual -> next;     // Encontra a posição do index
     }
-
     return atual->element;         // Retorna o valor "elemento" do Nodo selecionado
 }
 
@@ -165,8 +169,11 @@ int ListSingleLinked::set(int index, int element)
 {
     if ((index < 0) || (index >= count))
     {
-        throw "Índice inválido!";
+        cout << "[SET] Índice inválido!";
+        return -1;   
     }
+
+    cout << "[SET] Colocando valor " << element << " no index " << index << ". Valor devolvido: ";
 
     Node* atual = head;
     for(int i = 0; i < index; i++){
