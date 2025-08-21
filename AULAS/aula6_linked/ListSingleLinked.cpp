@@ -124,7 +124,7 @@ int ListSingleLinked::get(int index)
         atual = atual -> next;     // Encontra a posição do index
     }
 
-    return atual->element;
+    return atual->element;         // Retorna o valor "elemento" do Nodo selecionado
 }
 
 /**
@@ -141,6 +141,20 @@ int ListSingleLinked::set(int index, int element)
     {
         throw "Índice inválido!";
     }
+
+    Node* atual = head;
+    for(int i = 0; i < index; i++){
+        atual = atual -> next;     // Encontra a posição do index
+    }
+
+    
+
+
+
+
+
+
+
 }
 
 /**
