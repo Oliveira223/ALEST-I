@@ -18,7 +18,11 @@ int main()
     lista.add(10);
     lista.print();
     
-    lista.add(0, 1);
+    //lista.add(0, 1);
+
+    lista.clear();
+    lista.print();
+
 
     
 

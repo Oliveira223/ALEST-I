@@ -17,6 +17,12 @@ ListSingleLinked::ListSingleLinked()
 }
 
 void ListSingleLinked::print(){
+    
+    cout << "[PRINT] ";
+    if(head == nullptr){
+        cout << "A lista está vazia" << endl;
+        return;
+    }
 
     Node* tmp = head;
     for(int i = 0; i < count; i++){
@@ -31,6 +37,16 @@ void ListSingleLinked::print(){
 */
 void ListSingleLinked::clear()
 {
+    Node* atual = head;
+    Node* prox;
+    for(int i = 0; i < count; i++){
+        prox = atual->next;
+        delete[] atual;
+        atual = prox;
+    }
+    head = nullptr;
+    count = 0;
+    cout << "[CLEAR] Lista Limpa" << endl;
 }
 
 /**

@@ -19,18 +19,18 @@ class ListSingleLinked : public ListTAD {
     
 public:
     ListSingleLinked();
-    void    print();
-    void    add(int element);
-    void    add(int index, int element);
-    int     get(int index);
-    int     set(int index, int element);
-    bool    remove(int element);
+    void    print();                        //done
+    void    add(int element);               //done
+    void    add(int index, int element);    //done
+    int     get(int index);                 //done
+    int     set(int index, int element);    //done
+    bool    remove(int element);            
     int     removeByIndex(int index);
     bool    isEmpty();
     int     size();
     bool    contains(int element);
     int     indexOf(int element);
-    void    clear();
+    void    clear();                        //done
     std::string toString();
 };
 
