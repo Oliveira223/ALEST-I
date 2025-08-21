@@ -10,6 +10,10 @@ using namespace std;
 // Construtor
 ListSingleLinked::ListSingleLinked()
 {
+    //Usa variaveis da classe; (não é necessário pois não recebe parametros, logo não tem ambiguidade)
+    this ->  count = 0;
+    this ->  head  = nullptr;
+    this ->  tail  = nullptr;
 }
 
 /**
@@ -46,6 +50,19 @@ int ListSingleLinked::size()
 */
 void ListSingleLinked::add(int element)
 {
+    Node* novo = new Node(element); // Cria Nodo
+
+    // Se a lista estiver vazia
+    if(count == 0){
+        head = novo;
+        tail = novo;
+        count ++;
+        return;
+    }
+
+    tail -> next = novo;    // O ptr Next do Tail aponta para o Novo
+    tail = novo;            // Atualiza a posição do tail
+    count++;                // Atualiza o numero de elementos
 }
 
 /**
@@ -61,6 +78,31 @@ void ListSingleLinked::add(int index, int element)
     {
         throw "Índice inválido";
     }
+
+    Node* novo = new Node(element);
+
+    // Se a lista estiver vazia
+    if(count == 0){
+       add(element);
+       return;
+    }
+
+    // Se quiser adicionar no inicio
+    if(index == 0){
+        novo -> next = head;
+        head = novo;
+        count++;
+        return;
+    }
+
+    Node* atual = head;
+    for(int i = 0; i < index - 1; i++){
+        atual = atual -> next;     // Encontra a posição antes do index
+    }
+
+    novo  -> next = atual -> next; // Atualiza o ptr antigo para o novo
+    atual -> next = novo;          // O novo aponta para o next (do antigo)
+    count++;
 }
 
 /**
@@ -76,6 +118,13 @@ int ListSingleLinked::get(int index)
     {
         throw "Índice inválido";
     }
+
+    Node* atual = head;
+    for(int i = 0; i < index; i++){
+        atual = atual -> next;     // Encontra a posição do index
+    }
+
+    return atual->element;
 }
 
 /**
