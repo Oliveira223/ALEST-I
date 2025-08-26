@@ -10,36 +10,41 @@ using namespace std;
 // Construtor
 ListSingleLinked::ListSingleLinked()
 {
-    //Usa variaveis da classe; (não é necessário pois não recebe parametros, logo não tem ambiguidade)
-    this ->  count = 0;
-    this ->  head  = nullptr;
-    this ->  tail  = nullptr;
+    // Usa variaveis da classe; (não é necessário pois não recebe parametros, logo não tem ambiguidade)
+    this->count = 0;
+    this->head = nullptr;
+    this->tail = nullptr;
 }
 
-void ListSingleLinked::print(){
-    
+void ListSingleLinked::print()
+{
+
     cout << "\n[PRINT] ";
-    if(head == nullptr){
+    if (head == nullptr)
+    {
         cout << "A lista está vazia" << endl;
         return;
     }
 
-    Node* tmp = head;
-    for(int i = 0; i < count; i++){
+    Node *tmp = head;
+    for (int i = 0; i < count; i++)
+    {
         cout << "[ " << tmp->element << " ]-> ";
-        tmp = tmp -> next;     // Encontra a posição do index
+        tmp = tmp->next; // Encontra a posição do index
     }
-    cout<< "NULL\n" << endl;      
+    cout << "NULL\n"
+         << endl;
 }
 
 /**
-* Esvazia a lista.
-*/
+ * Esvazia a lista.
+ */
 void ListSingleLinked::clear()
 {
-    Node* atual = head;
-    Node* prox;
-    for(int i = 0; i < count; i++){
+    Node *atual = head;
+    Node *prox;
+    for (int i = 0; i < count; i++)
+    {
         prox = atual->next;
         delete[] atual;
         atual = prox;
@@ -50,54 +55,55 @@ void ListSingleLinked::clear()
 }
 
 /**
-* Retorna true se a lista nao contem elementos.
-* 
-* @return true se a lista nao contem elementos
-*/
+ * Retorna true se a lista nao contem elementos.
+ *
+ * @return true se a lista nao contem elementos
+ */
 bool ListSingleLinked::isEmpty()
 {
     return count == 0;
 }
 
 /**
-* Retorna o numero de elementos armazenados na lista.
-* 
-* @return o numero de elementos da lista
-*/
+ * Retorna o numero de elementos armazenados na lista.
+ *
+ * @return o numero de elementos da lista
+ */
 int ListSingleLinked::size()
 {
     return count;
 }
 
 /**
-* Adiciona um elemento ao final da lista.
-* 
-* @param element elemento a ser adicionado ao final da lista
-*/
+ * Adiciona um elemento ao final da lista.
+ *
+ * @param element elemento a ser adicionado ao final da lista
+ */
 void ListSingleLinked::add(int element)
 {
-    Node* novo = new Node(element); // Cria Nodo
+    Node *novo = new Node(element); // Cria Nodo
 
     // Se a lista estiver vazia
-    if(count == 0){
+    if (count == 0)
+    {
         head = novo;
         tail = novo;
-        count ++;
+        count++;
         return;
     }
 
-    tail -> next = novo;    // O ptr Next do Tail aponta para o Novo
-    tail = novo;            // Atualiza a posição do tail
-    count++;                // Atualiza o numero de elementos
+    tail->next = novo; // O ptr Next do Tail aponta para o Novo
+    tail = novo;       // Atualiza a posição do tail
+    count++;           // Atualiza o numero de elementos
 }
 
 /**
-* Adiciona um elemento antes de uma pos. específica
-* 
-* @param index   posição a inserir o novo elemento
-* @param element elemento a ser adicionado
-* 
-*/
+ * Adiciona um elemento antes de uma pos. específica
+ *
+ * @param index   posição a inserir o novo elemento
+ * @param element elemento a ser adicionado
+ *
+ */
 void ListSingleLinked::add(int index, int element)
 {
     cout << "[ADD1] Adicionando " << element << " no index " << index << endl;
@@ -106,39 +112,42 @@ void ListSingleLinked::add(int index, int element)
         throw "Índice inválido";
     }
 
-    Node* novo = new Node(element);
+    Node *novo = new Node(element);
 
     // Se a lista estiver vazia
-    if(count == 0){
-       add(element);
-       return;
+    if (count == 0)
+    {
+        add(element);
+        return;
     }
 
     // Se quiser adicionar no inicio
-    if(index == 0){
-        novo -> next = head;
+    if (index == 0)
+    {
+        novo->next = head;
         head = novo;
         count++;
         return;
     }
 
-    Node* atual = head;
-    for(int i = 0; i < index - 1; i++){
-        atual = atual -> next;     // Encontra a posição antes do index
+    Node *atual = head;
+    for (int i = 0; i < index - 1; i++)
+    {
+        atual = atual->next; // Encontra a posição antes do index
     }
 
-    novo  -> next = atual -> next; // Atualiza o ptr antigo para o novo
-    atual -> next = novo;          // O novo aponta para o next (do antigo)
+    novo->next = atual->next; // Atualiza o ptr antigo para o novo
+    atual->next = novo;       // O novo aponta para o next (do antigo)
     count++;
 }
 
 /**
-* Retorna o elemento de uma determinada posicao da lista.
-* 
-* @param index a posicao da lista
-* @return o elemento da posicao especificada
-* @throws exception se (index < 0 || index >= size())
-*/
+ * Retorna o elemento de uma determinada posicao da lista.
+ *
+ * @param index a posicao da lista
+ * @return o elemento da posicao especificada
+ * @throws exception se (index < 0 || index >= size())
+ */
 int ListSingleLinked::get(int index)
 {
 
@@ -150,11 +159,12 @@ int ListSingleLinked::get(int index)
 
     cout << "[GET] Elemento no index " << index << ": ";
 
-    Node* atual = head;
-    for(int i = 0; i < index; i++){
-        atual = atual -> next;     // Encontra a posição do index
+    Node *atual = head;
+    for (int i = 0; i < index; i++)
+    {
+        atual = atual->next; // Encontra a posição do index
     }
-    return atual->element;         // Retorna o valor "elemento" do Nodo selecionado
+    return atual->element; // Retorna o valor "elemento" do Nodo selecionado
 }
 
 /**
@@ -170,14 +180,15 @@ int ListSingleLinked::set(int index, int element)
     if ((index < 0) || (index >= count))
     {
         cout << "[SET] Índice inválido!";
-        return -1;   
+        return -1;
     }
 
     cout << "[SET] Colocando valor " << element << " no index " << index << ". Valor devolvido: ";
 
-    Node* atual = head;
-    for(int i = 0; i < index; i++){
-        atual = atual -> next;     // Encontra a posição do index
+    Node *atual = head;
+    for (int i = 0; i < index; i++)
+    {
+        atual = atual->next; // Encontra a posição do index
     }
     int tmp = atual->element;
     atual->element = element;
@@ -203,12 +214,53 @@ bool ListSingleLinked::contains(int element)
  * @return true se conseguir remover
  */
 bool ListSingleLinked::remove(int element)
-{
+{   
+    cout << "[REM] Procurando elemento: " << element << endl;
+    Node *prev = head;
+    Node* del;
 
+    // Se lista vazia
+    if(!head){
+        cout << "[REM] Lista vazia." << endl;
+        return false;
+    }
 
+    // Caso o elemento seja o head
+    if (head->element == element) {
+        del = head;
+        head = head->next;
+        if (!head) // lista ficou vazia
+            tail = nullptr;
+        delete del;
+        count--;
+        cout << "[REM] Elemento encontrado." << endl;
+        return true;
+    }
 
-    return 0;
+    // Enquanto (prev->next) não for nullptr
+    while(prev->next)
+    {
+        // Se encontrar
+        if(prev->next->element == element){
+            del = prev->next;
+            prev->next = del->next;
 
+            // Se for o tail
+            if(del == tail)
+                tail = prev;
+
+            cout << "[REM] Elemento encontrado."<< endl;
+            count--;
+            delete del;
+            return true;
+        }
+
+        // Se não encontrar
+        prev = prev->next;
+
+    }
+    cout << "[REM] Elemento não encotrado."<< endl;    
+    return false;
 }
 
 /**
@@ -218,50 +270,47 @@ bool ListSingleLinked::remove(int element)
  * @return o elemento que estava na posição
  */
 int ListSingleLinked::removeByIndex(int index)
-{
-    // Tratamentos:
-    // Primeiro elemento
-    // Ultimo elemento
-
-   cout << "[REM_IND] Removendo elemento do index: " << index << endl;
-
-    //salva o ponteiro para o next
+{   cout << "[REM_IND] Removendo elemento do index: " << index << endl;
     if ((index < 0) || (index >= count))
     {
         throw "Índice inválido!";
     }
 
-    if(index == 0){
-        Node* del = head;               //Ponteiro para head
-        int tmp = head -> element;
-        head = head -> next;
-        delete[] del;
+    Node *del;
+    int tmp;
 
-        count--;
-        cout << "[REM_IND] Elemento removido: ";
-        return tmp;
+    if (index == 0)
+    {
+        del = head; // Ponteiro para head
+        tmp = del->element;
+        head = head->next;
+
+        // Se a lista ficar vazia (só um elemento)
+        if (count == 1)
+        {
+            tail = nullptr;
+        }
+    }
+    else
+    {
+        Node *prev = head;
+        for (int i = 0; i < index - 1; i++)
+        {
+            prev = prev -> next; // Encontra a posição do index
+        }
+        del = prev->next;
+        tmp = del->element;
+        prev -> next = del->next;
+
+        //Se del é o ultimo elemento, aponta para o anterior
+        if(del == tail){
+            tail = prev;
+        }
     }
 
-    cout << "  Antes > " << tail->element<< endl;
-
-    Node* atual = head;
-    for(int i = 0; i < index - 1; i++){
-        atual = atual -> next;     // Encontra a posição do index
-    }
-
-    int tmp = atual->next->element;
-    Node* del = atual->next;
-    atual->next = atual->next->next; 
-   
-    if(index == count - 1){
-        tail = atual->next;
-    }
-
-    delete[] del;
-    cout << "  Depois > " << tail->element<< endl;
-
-    count--;
     cout << "[REM_IND] Elemento removido: ";
+    count--;
+    delete del;
     return tmp;
 }
 
@@ -280,9 +329,8 @@ string ListSingleLinked::toString()
 {
     ostringstream aux;
     aux << "[ ";
-    //for (int pos = 0; pos < count; pos++)
-    //    aux << data[pos] << " ";
+    // for (int pos = 0; pos < count; pos++)
+    //     aux << data[pos] << " ";
     aux << "]";
     return aux.str();
 }
-
