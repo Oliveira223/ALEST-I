@@ -23,12 +23,18 @@ int main()
 
     cout << lista.get(1) << endl;
     cout << lista.get(6) << endl;
-    cout << lista.set(1, 4) << endl;
+    cout << lista.set(1, 3) << endl;
     lista.print();
     cout << lista.set(6, 4) << endl;
     lista.print();
 
+    cout << lista.removeByIndex(5) << endl;
+    lista.print();
 
+    // cout << lista.removeByIndex(0) << endl;
+    // lista.print();
+
+    
     lista.clear();
     lista.print();
 

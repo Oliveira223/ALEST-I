@@ -205,6 +205,8 @@ bool ListSingleLinked::contains(int element)
 bool ListSingleLinked::remove(int element)
 {
 
+
+
     return 0;
 
 }
@@ -217,12 +219,50 @@ bool ListSingleLinked::remove(int element)
  */
 int ListSingleLinked::removeByIndex(int index)
 {
+    // Tratamentos:
+    // Primeiro elemento
+    // Ultimo elemento
+
+   cout << "[REM_IND] Removendo elemento do index: " << index << endl;
+
+    //salva o ponteiro para o next
     if ((index < 0) || (index >= count))
     {
         throw "Índice inválido!";
     }
 
-    return 0;
+    if(index == 0){
+        Node* del = head;               //Ponteiro para head
+        int tmp = head -> element;
+        head = head -> next;
+        delete[] del;
+
+        count--;
+        cout << "[REM_IND] Elemento removido: ";
+        return tmp;
+    }
+
+    cout << "  Antes > " << tail->element<< endl;
+
+    Node* atual = head;
+    for(int i = 0; i < index - 1; i++){
+        atual = atual -> next;     // Encontra a posição do index
+    }
+
+    int tmp = atual->next->element;
+    Node* del = atual->next;
+    atual->next = atual->next->next; 
+   
+    if(index == count - 1){
+        tail = atual->next;
+    }
+
+    delete[] del;
+    cout << "  Depois > " << tail->element<< endl;
+
+    count--;
+    cout << "[REM_IND] Elemento removido: ";
+    return tmp;
 }
 
 /**
