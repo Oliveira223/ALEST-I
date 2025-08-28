@@ -6,7 +6,7 @@
 
 // =============================
 // Lista Simplesmente Encadeada
-// ============================
+// =============================
 
 class ListSingleLinked : public ListTAD { 
 
@@ -24,10 +24,10 @@ public:
     void    add(int index, int element);    //done
     int     get(int index);                 //done
     int     set(int index, int element);    //done
-    bool    remove(int element);            
-    int     removeByIndex(int index);
-    bool    isEmpty();
-    int     size();
+    bool    remove(int element);            //done
+    int     removeByIndex(int index);       //done
+    bool    isEmpty();                      //done
+    int     size();                         //done
     bool    contains(int element);
     int     indexOf(int element);
     void    clear();                        //done

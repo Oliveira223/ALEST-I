@@ -41,17 +41,43 @@ void ListSingleLinked::print()
  */
 void ListSingleLinked::clear()
 {
-    Node *atual = head;
-    Node *prox;
-    for (int i = 0; i < count; i++)
-    {
-        prox = atual->next;
-        delete[] atual;
-        atual = prox;
+    cout << "[CLEAR] Limpando lista..." << endl;
+    Node *prev = head;
+    Node* del;
+
+    // Se lista vazia
+    if(!head){
+        cout << "[REM] Lista vazia." << endl;
     }
-    head = nullptr;
-    count = 0;
-    cout << "[CLEAR] Lista Limpa" << endl;
+
+    while(prev->next){
+        cout << "Entrei no while\n";
+        del = prev->next;
+        prev->next = prev->next->next; // atualiza ptr (prev->next->next)
+
+        // Se for o tail
+        if(del == tail)
+            tail = prev;
+
+        prev = prev->next; //vai para o prox elemento
+       // print();
+        count--;
+        delete del;
+    }
+    cout<< "Sai do while\n";
+    print();
+    
+    // Node *atual = head;
+    // Node *prox;
+    // for (int i = 0; i < count; i++)
+    // {
+    //     prox = atual->next;
+    //     delete[] atual;
+    //     atual = prox;
+    // }
+    // head = nullptr;
+    // count = 0;
+    // cout << "[CLEAR] Lista Limpa" << endl;
 }
 
 /**
