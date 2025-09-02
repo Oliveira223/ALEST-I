@@ -6,7 +6,7 @@ app: app.o ListDoubleLinked.o Node.o
 app.o: app.cpp
 	g++ -c app.cpp
 
-ListSingleLinked.o: ListDoubleLinked.cpp
+ListDoubleLinked.o: ListDoubleLinked.cpp
 	g++ -c ListDoubleLinked.cpp
 
 Node.o: Node.cpp
