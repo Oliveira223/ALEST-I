@@ -10,7 +10,24 @@ using namespace std;
 // Construtor
 ListDoubleLinked::ListDoubleLinked()
 {
-    clear();
+    // Inicializa sentinelas (precisa de elementos)
+    this -> header  = new Node(0);
+    this -> trailer = new Node(0);
+    
+    // Ponteiros Invalidos
+    header  -> prev  = nullptr;
+    trailer -> next  = nullptr;
+    
+    // Inicializar Ponteiros
+    header -> next = trailer;
+    trailer-> prev = header;
+    
+    this -> count = 0;
+}
+
+void print()
+{
+   
 }
 
 /**
@@ -28,7 +45,7 @@ void ListDoubleLinked::clear()
 */
 bool ListDoubleLinked::isEmpty()
 {
-    
+    return count == 0;
 }
 
 /**
@@ -48,7 +65,23 @@ int ListDoubleLinked::size()
 */
 void ListDoubleLinked::add(int element)
 {
+    // Cria Nodo
+    Node *novo = new Node(element);
     
+    // Nodo temporario para não perder penultimo elemento
+    Node *ant = trailer -> prev;
+
+    // Trailer aponta para o Novo
+    trailer -> prev = novo;
+
+    // Novo aponta para o trailer pois é o último E para o anterior
+    novo -> next = trailer;
+    novo -> prev = ant;
+
+    // Atualiza ponteiro do elemento anterior
+    ant  -> next = novo;
+
+    count++;
 }
 
 /**
@@ -81,6 +114,8 @@ int ListDoubleLinked::get(int index)
         throw "Índice inválido";
     }
     
+
+    return 0;
 }
 
 /**
@@ -97,7 +132,8 @@ int ListDoubleLinked::set(int index, int element)
     {
         throw "Índice inválido!";
     }
-    
+ 
+    return 0;
 }
 
 /**
@@ -119,6 +155,8 @@ bool ListDoubleLinked::contains(int element)
  */
 bool ListDoubleLinked::remove(int element)
 {
+
+    return false;
 }
 
 /**
@@ -133,6 +171,8 @@ int ListDoubleLinked::removeByIndex(int index)
     {
         throw "Índice inválido!";
     }
+
+    return 0;
 }
 
 /**
@@ -144,6 +184,8 @@ int ListDoubleLinked::removeByIndex(int index)
 int ListDoubleLinked::indexOf(int element)
 {
     
+
+    return 0;
 }
 
 /**
@@ -153,5 +195,5 @@ int ListDoubleLinked::indexOf(int element)
 */
 string ListDoubleLinked::toString()
 {
-    
+    return 0;
 }

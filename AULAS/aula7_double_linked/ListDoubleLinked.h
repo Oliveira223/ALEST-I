@@ -4,8 +4,9 @@
 #include "ListTAD.h"
 #include "Node.h"
 
-// ****************************
+// =============================
 // Lista Duplamente Encadeada
+// =============================
 
 class ListDoubleLinked : public ListTAD { 
 
@@ -18,16 +19,17 @@ class ListDoubleLinked : public ListTAD {
     
 public:
     ListDoubleLinked();
+    void print();
     void add(int element);
     void add(int index, int element);
-    int get(int index);
-    int set(int index, int element);
+    int  get(int index);
+    int  set(int index, int element);
     bool remove(int element);
-    int removeByIndex(int index);
+    int  removeByIndex(int index);
     bool isEmpty();
-    int size();
+    int  size();
     bool contains(int element);
-    int indexOf(int element);
+    int  indexOf(int element);
     void clear();
     std::string toString();
 };
