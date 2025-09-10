@@ -16,6 +16,9 @@ int main()
     lista->add(8);
     lista->add(10);
 
+    lista->print();
+
+
     // lista.add(0, 1);
 
     // cout << lista.toString() << endl;

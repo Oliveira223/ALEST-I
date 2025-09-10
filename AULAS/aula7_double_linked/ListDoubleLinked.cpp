@@ -25,9 +25,26 @@ ListDoubleLinked::ListDoubleLinked()
     this -> count = 0;
 }
 
-void print()
+void ListDoubleLinked::print()
 {
-   
+    cout << "\n[PRINT] ";
+
+    if (count == 0) {
+        cout << "A lista está vazia.\n";
+        return;
+    }
+
+    Node* tmp = header->next; // começa no primeiro elemento real
+
+    cout << "Header <-> ";
+    while (tmp != trailer) {
+        cout << "[" << tmp->element << "]";
+        if (tmp->next != trailer) {
+            cout << " <-> ";
+        }
+        tmp = tmp->next;
+    }
+    cout << " <-> Trailer\n";
 }
 
 /**
@@ -65,6 +82,7 @@ int ListDoubleLinked::size()
 */
 void ListDoubleLinked::add(int element)
 {
+    cout << "[ADD] Adicionando \""<< element << "\" no inicio da lista." << endl;
     // Cria Nodo
     Node *novo = new Node(element);
     
