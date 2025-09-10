@@ -28,8 +28,8 @@ public:
     int     removeByIndex(int index);       //done
     bool    isEmpty();                      //done
     int     size();                         //done
-    bool    contains(int element);
-    int     indexOf(int element);
+    bool    contains(int element);          //done
+    int     indexOf(int element);           //done
     void    clear();                        //done
     std::string toString();
 };

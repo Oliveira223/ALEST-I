@@ -230,7 +230,13 @@ int ListSingleLinked::set(int index, int element)
  */
 bool ListSingleLinked::contains(int element)
 {
-    return indexOf(element) != -1;
+    if(indexOf(element) > -1){
+        cout << "[CONTAINS] A Lista contém o elemento " << element << endl;
+        return true;
+    } 
+
+    cout << "[CONTAINS] A Lista não contém o elemento " << element << endl;
+    return -1;
 }
 
 /**
@@ -348,7 +354,21 @@ int ListSingleLinked::removeByIndex(int index)
  */
 int ListSingleLinked::indexOf(int element)
 {
-    return 0;
+    cout << "[IndexOF] Procurando Elemento: " << element << endl;
+    int indexof = 0;
+    Node *atual = head;
+    for (int i = 0; i < count; i++)
+    {
+        if(atual->element == element){
+            cout << "[IndexOf] Elemento Encontrado no index: " << indexof << endl;
+            return true;
+        }
+        atual = atual->next; 
+        indexof++;
+    }
+
+    cout << "[IndexOF] Elemento Não encontrado. " << endl;
+    return -1;
 }
 
 string ListSingleLinked::toString()

@@ -35,7 +35,13 @@ int main()
     cout << lista->remove(4) << endl; lista->print();
     cout << lista->remove(0) << endl; lista->print();
 
+    // Teste IndexOf
+    cout << lista->indexOf(6) << endl; lista->print();
+    cout << lista->indexOf(7) << endl; lista->print();
     
+    // Teste Contains (chama IndexOf)
+    cout << lista->contains(6) << endl; lista->print();
+    cout << lista->contains(7) << endl; lista->print();
 
     // Limpando Lista
     lista->clear();
