@@ -47,13 +47,13 @@ int quick(int *a, int tam){
     // Quick sort na esquerda do pivo
     cout << "Chamando esquerda" << endl;;
     
-    // Chama quick com o inicio do array e o tamanho ate o pivo
+    // Passa a array do inicio até o meio
     quick(a, div);
 
     // Quick sort na direita do pivo
     cout << "Chamando direita" << endl;
 
-    // Passa a array 
+    // Passa a array começando pelo meio e indo até o final
     quick(a + div + 1, tam - div - 1);
     
     return 0;
