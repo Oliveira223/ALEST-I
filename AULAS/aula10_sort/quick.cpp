@@ -19,7 +19,7 @@ int quick(int *a, int tam){
 
     // Caso base, se o tamanho do array for menor que 2 retorna pois ja esta ordenado
     if(tam < 2){
-    cout <<"Base" << endl;
+    cout <<" > Base" << endl;
     return 0;
     }
     for(int i = 0; i < tam - 1; i++){        
@@ -46,10 +46,14 @@ int quick(int *a, int tam){
 
     // Quick sort na esquerda do pivo
     cout << "Chamando esquerda" << endl;;
+    
+    // Chama quick com o inicio do array e o tamanho ate o pivo
     quick(a, div);
 
     // Quick sort na direita do pivo
     cout << "Chamando direita" << endl;
+
+    // Passa a array 
     quick(a + div + 1, tam - div - 1);
     
     return 0;
