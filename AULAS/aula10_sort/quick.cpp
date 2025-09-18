@@ -16,13 +16,20 @@ void print(int *a, int tam){
 int quick(int *a, int tam){
     int pivo = tam - 1;
     int div  = 0; 
+
+    // Caso base, se o tamanho do array for menor que 2 retorna pois ja esta ordenado
+    if(tam < 2){
+    cout <<"Base" << endl;
+    return 0;
+    }
     for(int i = 0; i < tam - 1; i++){        
         // ====== PRINT =============
         cout << "Array: [";
-        for(int i = 0; i < tam; i++){cout << a[i] << ", ";}
-        cout << "\b\b] " << "Pivo = " << a[pivo] << " Div = "  << a[div]  << endl; 
+        for(int j = 0; j < tam; j++){cout << a[j] << ", ";}
+        cout << "\b\b] " << "PivoPos = " << pivo << " DivPos = "  << div << endl; 
         // ===========================
    
+        // Se o pivo for maior que a[i], 
         if(a[i] < a[pivo]){
             // Swap(i, div)
             int tmp = a[div];
@@ -32,9 +39,19 @@ int quick(int *a, int tam){
         }
     }
     
+    // Swap(div, pivo) para colocar o pivo na posicao correta
     int tmp = a[div];
     a[div] = a[pivo];
     a[pivo] = tmp;
+
+    // Quick sort na esquerda do pivo
+    cout << "Chamando esquerda" << endl;;
+    quick(a, div);
+
+    // Quick sort na direita do pivo
+    cout << "Chamando direita" << endl;
+    quick(a + div + 1, tam - div - 1);
+    
     return 0;
 }
 
@@ -42,9 +59,16 @@ int quick(int *a, int tam){
 int main(){
     int a[] = {5, 4, 3, 2, 1};
     int tam = sizeof(a) / sizeof(a[0]);
-    // print(a, tam);
+    cout << "Inicio ===============" << endl;
+    print(a, tam);
+    cout << "======================" << endl << endl;
+   
     quick(a, tam);
-    // print(a, tam);
+    cout << endl;
+
+    cout << "Fim ==================" << endl;
+    print(a, tam);
+    cout << "======================" << endl;
  
     return 0;
 }
