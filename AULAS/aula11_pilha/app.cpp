@@ -11,6 +11,7 @@ int main()
     // Cria uma fila
     // QueueTAD fila = new QueueArray();
     QueueArray fila;
+    
     // Insere alguns números
     fila.enqueue(2);
     fila.enqueue(4);
