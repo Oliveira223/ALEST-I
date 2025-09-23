@@ -1,8 +1,9 @@
-#ifndef QUEUE_ARRAY_H
-#define QUEUE_ARRAY_H
+#ifndef QUEUE_LINKED_LIST_H
+#define QUEUE_LINKED_LIST_H
 
 #include <string>
 #include "QueueTAD.h"
+#include "../aula6_linked/ListSingleLinked.h"
 
 using namespace std;
 
@@ -15,14 +16,10 @@ using namespace std;
 class QueueLinkedList : public QueueTAD
 {
 private:
-    int *data;
-    int count;
-    int tamVet;
-    void setCapacity(int newCapacity);
+    ListSingleLinked* lista;
 
 public:
     QueueLinkedList();
-    QueueLinkedList(int tam);
     void enqueue(int element);
     int head();
     int dequeue();
@@ -30,6 +27,7 @@ public:
     void clear();
     bool isEmpty();
     int size();
+    void printQueue();
 };
 
 #endif

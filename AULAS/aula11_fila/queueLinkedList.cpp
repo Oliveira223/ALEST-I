@@ -1,7 +1,6 @@
 #include <iostream>
+#include <sstream>
 
-#include "../aula6_linked/ListSingleLinked.h"
-#include "../aula6_linked/ListSingleLinked.cpp"
 #include "queueLinkedList.h"
 
 using namespace std;
@@ -16,7 +15,7 @@ using namespace std;
 
 QueueLinkedList::QueueLinkedList()
 {
-    ListSingleLinked *lista = new ListSingleLinked();
+    lista = new ListSingleLinked();
 }
 
 
@@ -39,9 +38,9 @@ int QueueLinkedList::dequeue()
     return lista->removeByIndex(0);
 }
 
-void QueueLinkedList::head()
+int QueueLinkedList::head()
 {
-    lista->get(0);
+    return lista->get(0);
 }
 
 /**
@@ -59,7 +58,7 @@ void QueueLinkedList::clear()
 */
 bool QueueLinkedList::isEmpty()
 {
-    return lista->isEmpty;
+    return lista->isEmpty();
 }
 
 /**
@@ -70,5 +69,20 @@ bool QueueLinkedList::isEmpty()
 int QueueLinkedList::size()
 {
     return lista->size();
+}
+
+std::string QueueLinkedList::toString()
+{
+    std::ostringstream oss;
+    for (int i = 0; i < lista->size(); ++i) {
+        oss << lista->get(i);
+        if (i < lista->size() - 1) oss << " ";
+    }
+    return oss.str();
+}
+
+void QueueLinkedList::printQueue()
+{
+    lista->print();
 }
 
