@@ -10,7 +10,7 @@ int main()
 {
     // Cria uma fila
     // QueueTAD fila = new QueueArray();
-    QueueArray fila;
+    QueueLinkedList fila;
     
     // Insere alguns números
     fila.enqueue(2);

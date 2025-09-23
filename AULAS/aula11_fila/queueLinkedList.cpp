@@ -19,6 +19,31 @@ QueueLinkedList::QueueLinkedList()
     ListSingleLinked *lista = new ListSingleLinked();
 }
 
+
+/**
+ * Adiciona um elemento ao final da fila.
+ * 
+ * @param element elemento a ser adicionado ao final da fila
+ */
+void QueueLinkedList::enqueue(int element)
+{
+    lista->add(element);
+}
+
+/**
+ * Remove e retorna o primeiro da fila
+ * @return primeiro da fila
+ */
+int QueueLinkedList::dequeue()
+{
+    return lista->removeByIndex(0);
+}
+
+void QueueLinkedList::head()
+{
+    lista->get(0);
+}
+
 /**
 * Esvazia a fila.
 */
@@ -34,7 +59,7 @@ void QueueLinkedList::clear()
 */
 bool QueueLinkedList::isEmpty()
 {
-    return count == 0;
+    return lista->isEmpty;
 }
 
 /**
@@ -44,33 +69,6 @@ bool QueueLinkedList::isEmpty()
 */
 int QueueLinkedList::size()
 {
-    return count;
-}
-
-/**
-* Adiciona um elemento ao final da fila.
-* 
-* @param element elemento a ser adicionado ao final da fila
-*/
-void QueueLinkedList::enqueue(int element)
-{
-    lista->add(element);
-}
-
-void QueueLinkedList::head()
-{
-    lista->get(0);
-}
-
-/**
- * Remove e retorna o primeiro da fila
- * @return primeiro da fila
- */
-int QueueLinkedList::dequeue()
-{
-    tmp = lista->get(0);
-    lista->removeByIndex(0);
-
-    return tmp;
+    return lista->size();
 }
 
