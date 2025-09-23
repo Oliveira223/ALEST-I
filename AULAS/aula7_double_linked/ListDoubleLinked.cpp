@@ -52,7 +52,21 @@ void ListDoubleLinked::print()
 */
 void ListDoubleLinked::clear()
 {
+    cout << "[CLEAR] Esvaziando a lista." << endl;
+    // Percorre a lista removendo os elementos
+    Node* current = header->next;
+    while (current != trailer) {
+        Node* nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
 
+    // Reconfigura os ponteiros das sentinelas
+    header->next = trailer;
+    trailer->prev = header;
+
+    // Reseta o contador de elementos
+    count = 0;
 }
 
 /**
@@ -62,6 +76,7 @@ void ListDoubleLinked::clear()
 */
 bool ListDoubleLinked::isEmpty()
 {
+    cout << "[ISEMPTY] Verificando se a lista esta vazia." << endl;
     return count == 0;
 }
 
@@ -115,7 +130,23 @@ void ListDoubleLinked::add(int index, int element)
     {
         throw "Índice inválido";
     }
-    
+    cout << "[ADD] Adicionando \""<< element << "\" na posicao " << index << " da lista." << endl;
+    // Cria Nodo
+    Node *novo = new Node(element);
+
+    // Nodo temporario para não perder penultimo elemento
+    Node *ant = header;
+    for (int i = 0; i < index; i++) {
+        ant = ant->next;
+    }
+
+    // Atualiza ponteiros
+    novo->prev = ant;
+    novo->next = ant->next;
+    ant->next->prev = novo;
+    ant->next = novo;
+
+    count++;
 }
 
 /**
@@ -127,13 +158,19 @@ void ListDoubleLinked::add(int index, int element)
 */
 int ListDoubleLinked::get(int index)
 {
+    cout << "[GET] Retornando o elemento na posicao " << index << "." << endl;
     if (index < 0 || index >= count)
     {
         throw "Índice inválido";
     }
     
+    Node* current = header->next;
+    for (int i = 0; i < index; i++) {
+        current = current->next;
+    }
+    return current->element;
 
-    return 0;
+    return -1;
 }
 
 /**
@@ -146,12 +183,21 @@ int ListDoubleLinked::get(int index)
  */
 int ListDoubleLinked::set(int index, int element)
 {
+    cout << "[SET] Substituindo o elemento na posicao " << index << " pelo elemento \""<< element << "\"." << endl;
     if ((index < 0) || (index >= count))
     {
         throw "Índice inválido!";
     }
  
-    return 0;
+    Node* current = header->next;
+    for (int i = 0; i < index; i++) {
+        current = current->next;
+    }
+    int oldElement = current->element;
+    current->element = element;
+    return oldElement;
+
+    return -1;
 }
 
 /**
@@ -162,6 +208,7 @@ int ListDoubleLinked::set(int index, int element)
  */
 bool ListDoubleLinked::contains(int element)
 {
+    cout << "[CONTAINS] Verificando se a lista contem o elemento \""<< element << "\"." << endl;
     return indexOf(element) != -1;
 }
 
@@ -173,6 +220,18 @@ bool ListDoubleLinked::contains(int element)
  */
 bool ListDoubleLinked::remove(int element)
 {
+    cout << "[REMOVE] Removendo \""<< element << "\" da lista." << endl;
+    for (Node* current = header->next; current != trailer; current = current->next) {
+        if (current->element == element) {
+            // Atualiza os ponteiros dos nós adjacentes
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+            delete current; // Libera a memória do nó removido
+            count--;
+            return true;
+        }
+    }
+
 
     return false;
 }
@@ -201,9 +260,15 @@ int ListDoubleLinked::removeByIndex(int index)
  */
 int ListDoubleLinked::indexOf(int element)
 {
-    
+    cout << "[INDEXOF] Procurando o elemento \""<< element << "\" na lista." << endl;
 
-    return 0;
+    for (Node* current = header->next; current != trailer; current = current->next) {
+        if (current->element == element) {
+            return 0;
+        }
+    }
+
+    return -1;
 }
 
 /**
@@ -213,5 +278,10 @@ int ListDoubleLinked::indexOf(int element)
 */
 string ListDoubleLinked::toString()
 {
-    return 0;
+    std::ostringstream oss;
+    for (int i = 0; i < size(); ++i) {
+        oss << get(i);
+        if (i < size() - 1) oss << " ";
+    }
+    return oss.str();
 }
