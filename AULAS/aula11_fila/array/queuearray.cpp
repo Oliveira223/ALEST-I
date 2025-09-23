@@ -2,6 +2,8 @@
 #include <cmath>
 #include <string>
 #include <sstream>
+
+#include "../aula6_linked/ListSingleLinked.h"
 #include "queuearray.h"
 
 using namespace std;
@@ -12,6 +14,7 @@ QueueArray::QueueArray()
     tamVet = TAM_PADRAO;
     count = 0;
     data = new int[tamVet]; //data = (int*) malloc( sizeof(int) * tamVet );
+    ListSingleLinked *lista = new ListSingleLinked();
 }
 
 // Construtor com capacidade inicial
@@ -115,20 +118,7 @@ void QueueArray::setCapacity(int newCapacity)
     }
 }
 
-/**
- * Remove e retorna o primeiro da fila
- * @return primeiro da fila
- */
-int QueueArray::dequeue()
-{
-    int aux = data[0];
-    for (int pos = 0; pos < count - 1; pos++)
-    {
-        data[pos] = data[pos + 1];
-    }
-    count--;
-    return aux;
-}
+c
 
 string QueueArray::toString()
 {
