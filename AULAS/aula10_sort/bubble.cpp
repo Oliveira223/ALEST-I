@@ -33,8 +33,6 @@ int main(){
     cout << "\b\b]" << endl;
     
     bubble(a, tam);    
-
-    
     
     return 0;
 }
