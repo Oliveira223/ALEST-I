@@ -4,7 +4,6 @@
 
 class StackTAD {
     public:
-        virtual void print();
         virtual void push(int e) = 0;
         virtual int pop() = 0;
         virtual int top() = 0;

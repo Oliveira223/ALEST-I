@@ -20,7 +20,7 @@ private:
 
 public:
     StackLinkedList();
-    void print();
+    void printStack();
     void push(int e);
     int pop();
     int top();

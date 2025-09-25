@@ -23,7 +23,7 @@ StackLinkedList::StackLinkedList()
 /**
  * Imprime
  */
-void StackLinkedList::print(){
+void StackLinkedList::printStack(){
     lista->print();
 }
 
