@@ -43,6 +43,10 @@ int main()
     cout << lista->contains(6) << endl; lista->print();
     cout << lista->contains(7) << endl; lista->print();
 
+    // Transformando em string
+    cout << "string" << endl;
+    cout << lista->toString();
+
     // Limpando Lista
     lista->clear();
     lista->print();

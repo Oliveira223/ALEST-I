@@ -375,8 +375,10 @@ string ListSingleLinked::toString()
 {
     ostringstream aux;
     aux << "[ ";
-    // for (int pos = 0; pos < count; pos++)
-    //     aux << data[pos] << " ";
-    aux << "]";
+    for (int i = 0; i < count; i++){
+        aux << get(i);
+        if (i < count - 1) aux << " ";
+    }
+    aux << " ]" << endl;
     return aux.str();
 }
