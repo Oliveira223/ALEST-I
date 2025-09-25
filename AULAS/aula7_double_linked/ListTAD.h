@@ -20,6 +20,6 @@ class ListTAD {
         virtual int  getFirst() = 0;
         virtual int  getLast() = 0;
         virtual int  removeFirst() = 0;
-        virtual int removeLast() = 0;
+        virtual int  removeLast() = 0;
 };
 

@@ -87,6 +87,7 @@ bool ListDoubleLinked::isEmpty()
 */
 int ListDoubleLinked::size()
 {
+    cout << "[SIZE] Retornando o tamanho da lista." << endl;
     return count;
 }
 
@@ -232,7 +233,6 @@ bool ListDoubleLinked::remove(int element)
         }
     }
 
-
     return false;
 }
 
@@ -249,7 +249,21 @@ int ListDoubleLinked::removeByIndex(int index)
         throw "Índice inválido!";
     }
 
-    return 0;
+    cout << "[REMOVEBYINDEX] Removendo o elemento na posicao " << index << " da lista." << endl;
+
+    Node* current = header->next;
+    for (int i = 0; i < index; i++) {
+        current = current->next;
+    }
+    int removedElement = current->element;
+
+    // Atualiza os ponteiros dos nós adjacentes
+    current->prev->next = current->next;
+    current->next->prev = current->prev;
+    delete current; // Libera a memória do nó removido
+    count--;
+
+    return removedElement;
 }
 
 /**
@@ -264,7 +278,7 @@ int ListDoubleLinked::indexOf(int element)
 
     for (Node* current = header->next; current != trailer; current = current->next) {
         if (current->element == element) {
-            return 0;
+            return current;
         }
     }
 
