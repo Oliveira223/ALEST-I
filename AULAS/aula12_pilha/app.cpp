@@ -1,7 +1,6 @@
 #include <iostream>
 #include "stackLinkedList.h"
 
-
 using namespace std;
 
 // ******************************************

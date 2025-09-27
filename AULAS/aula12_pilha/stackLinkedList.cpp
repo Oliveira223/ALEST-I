@@ -19,14 +19,12 @@ StackLinkedList::StackLinkedList()
     lista = new ListSingleLinked();
 }
 
-
 /**
  * Imprime
  */
 void StackLinkedList::printStack(){
     lista->print();
 }
-
 
 /**
  * Adiciona um elemento ao topo da pilha.
