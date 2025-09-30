@@ -7,16 +7,10 @@ int insertion(int *a, int tam){
     int mov, div = 0;
     int chave;
 
-    for (div = 1; div <= tam; div++){  // começa no index 2
-        // ====== PRINT =============
-        cout << "Array: [";
-        for(int i = 0; i < tam; i++){cout << a[i] << ", ";}
-        cout << "\b\b]" << endl;
-        // ===========================
-        
+    for (div = 1; div < tam; div++){  // começa no index 2   
         chave = a[div]; 
         mov = div - 1;
-
+        
         while( (chave < a[mov]) && (mov >= 0) ){
             //cout << "entrei";
             a[mov + 1] = a[mov];
@@ -24,6 +18,11 @@ int insertion(int *a, int tam){
         }
         a[mov + 1] = chave;
         
+        // ====== PRINT =============
+        cout << "Array: [";
+        for(int i = 0; i < tam; i++){cout << a[i] << ", ";}
+        cout << "\b\b]" << endl;
+        // ===========================
     }
     
     return 0;
