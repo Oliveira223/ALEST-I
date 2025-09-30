@@ -20,5 +20,5 @@ int main(){
         }
     }
 
-    cout << "Interações = " << r << endl;
+    cout << "Iterações = " << r << endl;
 }
