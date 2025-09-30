@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -32,7 +33,13 @@ int insertion(int *a, int tam){
 int main(){
     int a[] = {5, 4, 3, 2, 1};
     int tam = sizeof(a) / sizeof(a[0]);
-    insertion(a, tam);
     
+    // Tempo antes
+    auto start = chrono::high_resolution_clock::now();
+    insertion(a, tam);
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double, milli> duration = end - start;
+    cout << "Tempo de execução: " << duration.count() << " ms" << endl;
+
     return 0;
 }

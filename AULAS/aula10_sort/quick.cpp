@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -66,13 +67,17 @@ int main(){
     cout << "Inicio ===============" << endl;
     print(a, tam);
     cout << "======================" << endl << endl;
-   
-    quick(a, tam);
-    cout << endl;
 
+    auto start = chrono::high_resolution_clock::now();
+    quick(a, tam);
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double, milli> duration = end - start;
+    cout << endl;
+    
     cout << "Fim ==================" << endl;
     print(a, tam);
     cout << "======================" << endl;
+    cout << "> Tempo de execução: " << duration.count() << " ms" << endl;
  
     return 0;
 }
