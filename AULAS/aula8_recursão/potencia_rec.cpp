@@ -30,9 +30,6 @@ int pow_rec(int base, int expoente){
     return -1;
 }
 
-
-
-
 int main(){
     int base, exp  = 0;
 
