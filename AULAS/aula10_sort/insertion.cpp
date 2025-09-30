@@ -3,19 +3,29 @@
 
 using namespace std;
 
-int insertion(int *a, int tam){
-    int mov, div = 0;
-    int chave;
+// Função de ordenação por Insertion Sort
+// Recebe um array 'a' e seu tamanho 'tam'
+void insertion(int *a, int tam) {
+    int mov, div = 0; // 'div' é o índice do elemento a ser inserido
+    int chave;        // 'chave' guarda o valor que será comparado e inserido
 
-    for (div = 1; div < tam; div++){  // começa no index 2   
-        chave = a[div]; 
-        mov = div - 1;
+    // Percorre o array a partir do segundo elemento (índice 1),
+    // pois o primeiro já pode ser considerado "ordenado"
+    for (div = 1; div < tam; div++) {   
         
-        while( (chave < a[mov]) && (mov >= 0) ){
-            //cout << "entrei";
-            a[mov + 1] = a[mov];
-            mov--;
+        chave = a[div];    // Pega o elemento atual (a ser inserido na parte ordenada)
+        mov = div - 1;     // Começa a comparação pelo elemento imediatamente à esquerda
+        
+        // Enquanto 'mov' não for negativo e o elemento da esquerda for maior que a 'chave',
+        // desloca o elemento uma posição para a direita para abrir espaço
+        while (mov >= 0 && a[mov] > chave) {
+            a[mov + 1] = a[mov]; // Desloca elemento para a direita
+            mov--;               // Avança para a próxima posição à esquerda
         }
+
+        // Quando o while termina, 'mov' está no índice anterior
+        // à posição correta da 'chave'. Então inserimos a 'chave'
+        // logo após esse índice (mov + 1).
         a[mov + 1] = chave;
         
         // ====== PRINT =============
@@ -25,9 +35,7 @@ int insertion(int *a, int tam){
         // ===========================
     }
     
-    return 0;
 }
-
 
 int main(){
     int a[] = {5, 4, 3, 2, 1};
