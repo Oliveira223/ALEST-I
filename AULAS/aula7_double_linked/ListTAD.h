@@ -16,10 +16,10 @@ class ListTAD {
         virtual bool contains(int element) = 0;
         virtual int  indexOf(int element) = 0;
         virtual void clear() = 0;
-        // virtual void addFirst(int e) = 0;
-        // virtual int  getFirst() = 0;
-        // virtual int  getLast() = 0;
-        // virtual int  removeFirst() = 0;
-        // virtual int  removeLast() = 0;
+        virtual void addFirst(int e) = 0;
+        virtual int  getFirst() = 0;
+        virtual int  getLast() = 0;
+        virtual int  removeFirst() = 0;
+        virtual int  removeLast() = 0;
 };
 

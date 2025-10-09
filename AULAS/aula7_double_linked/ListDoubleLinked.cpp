@@ -306,6 +306,26 @@ int ListDoubleLinked::indexOf(int element)
     return -1;
 }
 
+void ListDoubleLinked::addFirst(int element){
+    add(0, element);
+}
+
+int ListDoubleLinked::getFirst(){
+    return get(0);
+}
+
+int ListDoubleLinked::getLast(){
+    return get(count - 1);
+}
+
+int ListDoubleLinked::removeFirst(){
+    return removeByIndex(0);
+}
+
+int ListDoubleLinked::removeLast(){
+    return removeByIndex(count - 1);
+}
+
 /**
 * Retorna o conteúdo da lista como uma string
 * 

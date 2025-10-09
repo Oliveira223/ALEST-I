@@ -51,11 +51,11 @@ public:
     int  indexOf(int element);          //done (testar)
     void clear();                       //done
     std::string toString();             //done
-    // void addFirst(int e);               
-    // int  getFirst();                    
-    // int  getLast();
-    // int  removeFirst();
-    // int  removeLast();
+    void addFirst(int e);               
+    int  getFirst();                    
+    int  getLast();
+    int  removeFirst();
+    int  removeLast();
     
 };
 
