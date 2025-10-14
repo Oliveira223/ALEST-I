@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-    Tree 
+    TreeTAD* arvore = TreeTAD();
 
 
     return 0;
