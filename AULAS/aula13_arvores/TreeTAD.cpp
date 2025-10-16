@@ -13,7 +13,8 @@ using namespace std;
 // virtual int  getItem() = 0;
 // virtual TreeTAD* getParent() = 0;
 
-
+// Classe Tree herda publicamente da classe TreeTAD (Classe Derivada)
+//  | todos os membros publicos de TreeTAD permanecem publicos em Tree
 class Tree : public TreeTAD{
     private: 
         TreeTAD* parent;
@@ -32,25 +33,30 @@ class Tree : public TreeTAD{
             }
         }
 
-        void addChild(TreeTAD* tree){
-            children.push_back(tree);
-            Tree* tree2 = dynamic_cast<Tree*>(tree);
-            tree2 -> parent = this;
+        void addChild(TreeTAD* child){
+            // Adiciona um ponteiro a mais (tree) no vector de filhos do nó atual (this)
+            children.push_back(child);
+            Tree* treeChild = dynamic_cast<Tree*>(child);
+            treeChild -> parent = this;
         }
 
-        void addChild(int index, TreeTAD* Tree){
-            if (index >= 0 && index < children.size()){
-            
-            
+        // Usando a ordem dos filhos no <vector> como indíce 
+        void addChild(int index, TreeTAD* child){
+            // Se indice válido
+            if (index >= 0 && index <= children.size()){
+                // Insere um elemento na posição dada e empurra os elem a direita para frente (indece, valor)
+                children.insert(children.begin() + index, child);
+                Tree* treeChild = dynamic_cast<Tree*>(child);
+                treeChild -> parent = this;
             }
         }
 
 
-        // Remove um nó filho na posição especificada
+        // Remove um nó filho na posição especificada (retorna o nó removido do tipo TreeTAD*)
         TreeTAD* removeChild(int index){
             if (index >= 0 && index < children.size()){
-                Tree* removeChild = dynamic_cast<Tree*>(children(index));
-                child.erase(children.begin() + index);
+                Tree* removeChild = dynamic_cast<Tree*>(children[index]);
+                children.erase(children.begin() + index);
                 removeChild -> parent = nullptr; // Remove o pai do nó
                 return removeChild;
             }
@@ -63,6 +69,7 @@ class Tree : public TreeTAD{
 int main()
 {
     Tree* tree = new Tree(10);
-
+    tree->addChild(new Tree(2));
+    delete tree;
     return 0;
 }

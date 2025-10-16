@@ -2,6 +2,8 @@
 //  Classe abstrata TreeTAD
 // ******************************************
 
+// É o tipo absatrato de dados genérico para que outros tipos de arvore possam usar o mesmo TAD
+
 class TreeTAD {
     public:
         virtual void addChild(TreeTAD* tree) = 0;
