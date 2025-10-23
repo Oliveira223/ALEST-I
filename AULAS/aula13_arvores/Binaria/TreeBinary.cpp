@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <sstream>
 #include "TreeBinaryTAD.h"
 
 using namespace std;
@@ -51,7 +53,7 @@ public:
         return temp;
     }
 
-        // Obtém o item armazenado no nó
+    // Obtém o item armazenado no nó
     int getItem() const {
         return item;
     }
@@ -79,11 +81,11 @@ public:
 
 
     // Adiciona um nó filho
-    void addChild(TreeTAD* tree) {
-       children.push_back(tree);
-       Tree* tree2 = dynamic_cast<Tree*>(tree);
-       tree2->parent = this;           // Define o pai do nó filho
-    }
+    // void addChild(TreeTAD* tree) {
+    //    children.push_back(tree);
+    //    Tree* tree2 = dynamic_cast<Tree*>(tree);
+    //    tree2->parent = this;           // Define o pai do nó filho
+    // }
 
 
     // // Adiciona um nó filho em uma posição específica
@@ -137,6 +139,26 @@ public:
     //    return false;
     // }
 
+    
+    //{3, {4, {8, \, \} {9, \, \} {7, \, \}}}
+    string toString(){
+        ostringstream print;
+        TreeBinary* esquerda = dynamic_cast<TreeBinary*>(this->left);
+        TreeBinary* direita = dynamic_cast<TreeBinary*>(this->right);    
+        print << "{" << this->item;
+
+        if(right == nullptr){
+            print << ", \\";
+        } else{
+            print << "," << direita->toString();
+        }
+        
+        if()
+        //toString();
+        return print.str();
+    }
+
+
 };
 
 
@@ -155,6 +177,8 @@ int main(){
    cout << "Item left: " << left->getItem() << endl;
    cout << "Item right: " << right->getItem() << endl;
    cout << "Altura da árvore (raiz): " << raiz->altura() << endl;
+
+   cout << raiz -> toString() << endl;
 
    // Libera memória (destrutor de raiz deleta recursivamente filhos)
    delete raiz;

@@ -1,3 +1,4 @@
+#include <string>
 class TreeBinaryTAD {
 public:
     // Método para adicionar um nó filho
@@ -13,7 +14,7 @@ public:
     virtual TreeBinaryTAD* removeRight() = 0;
 
     // Método para obter um nó filho na posição especificada
-    virtual TreeTAD* getChild(int index) = 0;
+    //virtual TreeTAD* getChild(int index) = 0;
 
     // Método para contar o número de filhos
     //virtual int childrenCount() const = 0;
@@ -26,5 +27,8 @@ public:
 
     // Método para obter o nó pai
     virtual TreeBinaryTAD* getParent() const = 0;
+
+    // Imprime a lista
+    //virtual std::string ToString() = 0;
     
 };
