@@ -1,4 +1,3 @@
-
 // ******************************************
 //  Classe abstrata TreeTAD
 // ******************************************
@@ -9,26 +8,21 @@
 #define TREETAD_H
 
 #include <string>
+#include <vector>
 
 class TreeTAD {
-    public:
-        virtual ~TreeTAD() {}
+public:
+    virtual ~TreeTAD() = default;
 
-        // Adiciona um filho (implementação concreta decide como usar índice, se necessário)
-        virtual void addChild(TreeTAD* tree) = 0;
+    // Manipulação de filhos
+    virtual void addChild(TreeTAD* child) = 0;
+    virtual TreeTAD* getChild(int index) = 0;
+    virtual const std::vector<TreeTAD*>& getChildren() const = 0;
 
-        // Retorna o número de nós na subárvore
-        virtual int size() = 0;
-
-        
-        // Retorna o ponteiro para o pai (ou nullptr se raiz)
-        virtual TreeTAD* getParent() = 0;
-
-        // Retorna filho no index
-        virtual TreeTAD* getChild(int index) = 0;
-
-        // Conta ascendentes que correspondem ao item (string)
-        virtual int ascendentes(const std::string& item) = 0;
+    // Informações do nó
+    virtual int size() = 0;
+    virtual const std::string& getItem() const = 0;
+    virtual TreeTAD* getParent() = 0;
 };
 
 #endif // TREETAD_H

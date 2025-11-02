@@ -63,35 +63,9 @@ public:
         return nullptr;
     }
 
-    // Retorna referência const ao vetor de filhos para iteração
+    // Retorna referência privada do numero de filhos
     const std::vector<TreeTAD*>& getChildren() const {
         return children;
-    }
-
-    // Retorna quantos nós acima possuem o item especificado
-    int ascendentes(const string& target) {
-        int count = 0;
-
-        // Começa do nó pai e sobe até a raiz
-        TreeTAD* current = this->parent;
-
-        // Enquanto houver um nó pai
-        while (current != nullptr) {
-            Tree* currentTree = dynamic_cast<Tree*>(current);
-            if (currentTree == nullptr) {
-                // Se o ancestral não for do tipo Tree, sobe pela interface base
-                current = current->getParent();
-                continue;
-            }
-
-            if (currentTree->getItem() == target) {
-                count++;
-            }
-
-            // Move para o próximo nó pai
-            current = currentTree->getParent();
-        }
-        return count;
     }
 };
 
@@ -105,6 +79,34 @@ void printTree(Tree* node, int nivel = 0) {
             printTree(childTree, nivel + 1);
         }
     }
+}
+
+// Função verificar ordem
+//  > 1 nó dois niveis acima
+//  ou 
+//  > 3 nós um nível acima
+bool verificar(Tree* node){
+    if (!node) return false;
+    if (!node->getParent()){
+        cout << "É a raiz" << endl;
+        return true;
+    }
+    
+    // Primeira opção: Verifica se existe alguém 2 niveis acima
+    Tree* primeiroPai = dynamic_cast<Tree*>(node->getParent());
+    if(primeiroPai){
+        Tree* segundoPai = dynamic_cast<Tree*>(primeiroPai->getParent());
+        if(segundoPai){
+            return true;
+        }
+    }
+
+    // Segunda opção: Verifica se existe 3 pessoas um nivel acima
+    if (primeiroPai && primeiroPai->getChildren().size() >= 3) {
+        return true;
+    }
+
+    return false;
 }
 
 int main(){
@@ -126,6 +128,9 @@ int main(){
     vector<string> nomes;
     string nome;
     while (file >> nome) {
+        //Tira aspas
+        if (!nome.empty() && nome.front() == '"') nome.erase(0,1);
+        if (!nome.empty() && nome.back() == '"') nome.pop_back();
         nomes.push_back(nome);
     }
     file.close();
@@ -173,9 +178,22 @@ int main(){
     cout << "\n=== Estrutura da Árvore ===\n";
     printTree(raiz);
 
+    cout << "\n=== Verificação de Condições ===\n" << endl;
+    // Verifica a condição para o nó "Ana"
+    for (Tree* no : nos) {
+        if (no->getItem() == "Ana") { 
+            if (verificar(no)) {
+                cout << "Ana atende à condição." << endl;
+            } else {
+                cout << "Ana não atende à condição." << endl;
+            }
+            break;
+        }
+    }
+
     delete raiz; // libera memória
     return 0;
 
 
-    
+
 }
