@@ -91,7 +91,7 @@ bool verificar(Tree* node){
         cout << "É a raiz" << endl;
         return true;
     }
-    
+
     // Primeira opção: Verifica se existe alguém 2 niveis acima
     Tree* primeiroPai = dynamic_cast<Tree*>(node->getParent());
     if(primeiroPai){
@@ -177,6 +177,10 @@ int main(){
 
     cout << "\n=== Estrutura da Árvore ===\n";
     printTree(raiz);
+
+    // =========================
+    // VERIFICAÇÃO DE CONDIÇÕES
+    // =========================
 
     cout << "\n=== Verificação de Condições ===\n" << endl;
     // Verifica a condição para o nó "Ana"

@@ -1,0 +1,7 @@
+6
+"Joao" "Maria"
+"Joao" "Carlos"
+"Maria" "Ana"
+"Maria" "Bruno"
+"Carlos" "Paula"
+"Carlos" "Rafael"
