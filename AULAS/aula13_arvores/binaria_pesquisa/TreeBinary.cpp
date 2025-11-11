@@ -3,6 +3,16 @@
 #include "ABPTAD.h"
 
 using namespace std;
+/* 
+    ====================== 
+    EXEMPLO DYNAMIC_CAST<>
+
+        ABPTAD* temp = valor;
+        TreeBinary* treeTemp = dynamic_cast<TreeBinary*>(temp);
+
+        -> Como temp é do tipo ABPTAD e quero atribuir esse valor a uma TreeBinary, preciso converter o ABPTAD em TreeBinary
+    =========================
+*/
 
 class TreeBinary : public ABPTAD
 {
