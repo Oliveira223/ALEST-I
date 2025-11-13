@@ -71,6 +71,7 @@ public:
         if(this->left != nullptr){
             left = left2->altura();
         }
+
         if(this->right != nullptr){
             right = right2->altura();
         }
@@ -139,7 +140,7 @@ public:
     //    return false;
     // }
 
-    
+        
     //{3, {4, {8, \, \} {9, \, \} {7, \, \}}}
     string toString(){
         ostringstream print;
@@ -153,7 +154,11 @@ public:
             print << "," << direita->toString();
         }
         
-        if()
+        if(left == nullptr){
+            print << ", \\";
+        } else{
+            print << "," << esquerda->toString();
+        }
         //toString();
         return print.str();
     }
