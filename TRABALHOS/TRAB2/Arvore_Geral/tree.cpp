@@ -5,7 +5,9 @@
 #include <sstream>
 #include <string>
 
+
 using namespace std;
+
 
 class Tree : public TreeTAD
 {
@@ -13,6 +15,7 @@ private:
     TreeTAD *parent;                 // Ponteiro para o nó pai
     string item;                     // Item armazenado no nó
     std::vector<TreeTAD *> children; // Vetor para armazenar nós filhos
+
 
 public:
     // Construtor
@@ -22,6 +25,7 @@ public:
         this->parent = nullptr;
     }
 
+
     // Destrutor
     ~Tree()
     {
@@ -30,6 +34,7 @@ public:
             delete child; // Libera a memória dos filhos
         }
     }
+
 
     // Adiciona um nó filho
     void addChild(TreeTAD *tree)
@@ -42,6 +47,7 @@ public:
         }
     }
 
+
     // Obtém o tamanho da árvore (n° de nós)
     int size()
     {
@@ -53,17 +59,20 @@ public:
         return totalSize;
     }
 
+
     // Obtém o item armazenado no nó
     const string &getItem() const
     {
         return item;
     }
 
+
     // Obtém o nó pai
     TreeTAD *getParent()
     {
         return parent;
     }
+
 
     // Obtém um nó filho na posição especificada
     TreeTAD *getChild(int index)
@@ -75,12 +84,14 @@ public:
         return nullptr;
     }
 
+
     // Retorna referência privada do numero de filhos
     const std::vector<TreeTAD *> &getChildren() const
     {
         return children;
     }
 };
+
 
 void printTree(Tree *node, int nivel = 0)
 {
@@ -98,6 +109,7 @@ void printTree(Tree *node, int nivel = 0)
         }
     }
 }
+
 
 // Função verificar ordem
 //  > 1 nó dois niveis acima
@@ -121,6 +133,7 @@ bool verificar(Tree *node, vector<string> autorizados)
                 if (child == nullptr)
                     continue;
 
+
                 for (int j = 0; j < autorizados.size(); j++)
                 {
                     if (child->getItem() == autorizados[j])
@@ -134,11 +147,13 @@ bool verificar(Tree *node, vector<string> autorizados)
         }
     }
 
+
     // ===========================
     // Segundo Caso: algum ancestral 2 níveis ou mais acima está autorizado
     // ===========================
     Tree *atual = (Tree *)node->getParent(); // começa no pai
     int nivel = 1;
+
 
     while (atual != nullptr)
     {
@@ -149,11 +164,14 @@ bool verificar(Tree *node, vector<string> autorizados)
                 return true;
         }
 
+
         atual = (Tree *)atual->getParent(); // sobe um nível
     }
 
+
     return false;
 }
+
 
     int main()
     {
@@ -167,12 +185,14 @@ bool verificar(Tree *node, vector<string> autorizados)
             return 1;
         }
 
+
         int n;
         if (!(file >> n))
         {
             cerr << "Formato inválido: não conseguiu ler o número de nós." << endl;
             return 1;
         }
+
 
         vector<string> nomes;
         string nome;
@@ -187,17 +207,20 @@ bool verificar(Tree *node, vector<string> autorizados)
         }
         file.close();
 
+
         if (nomes.empty())
         {
             cerr << "Arquivo não contém pares de nomes." << endl;
             return 1;
         }
 
+
         // Teste imprimir pares
         for (size_t i = 0; i + 1 < nomes.size(); i += 2)
         {
             cout << nomes[i] << " -> " << nomes[i + 1] << endl;
         }
+
 
         // =========================
         // CRIAÇÃO DA HIERARQUIA
@@ -206,13 +229,16 @@ bool verificar(Tree *node, vector<string> autorizados)
         Tree *raiz = new Tree(nomes[0]);
         nos.push_back(raiz);
 
+
         Tree *pai_atual = raiz;
         string pai_anterior = nomes[0];
+
 
         for (size_t i = 0; i + 1 < nomes.size(); i += 2)
         {
             string paiNome = nomes[i];
             string filhoNome = nomes[i + 1];
+
 
             // Se o pai mudou, encontra o nó correspondente na lista
             if (paiNome != pai_anterior)
@@ -228,25 +254,29 @@ bool verificar(Tree *node, vector<string> autorizados)
                 pai_anterior = paiNome;
             }
 
+
             Tree *filho = new Tree(filhoNome);
             pai_atual->addChild(filho);
             nos.push_back(filho);
         }
 
+
         cout << "\n=== Estrutura da Árvore ===\n";
         printTree(raiz);
 
-        
+
+       
         // =========================
         // VERIFICAÇÃO DE CONDIÇÕES
         // =========================
-        
+       
         vector<string> autorizados = {"Carlos", "Paula", "Rafael", "Joao", "Mariana"};
         cout << "\nAutorizantes:" << endl;
         for (int i = 0; i < autorizados.size(); i++)
         {
             cout << "- " << autorizados[i] << endl;
         }
+
 
         cout << "\n=== Verificação de Condições ===\n"
              << endl;
@@ -266,6 +296,7 @@ bool verificar(Tree *node, vector<string> autorizados)
                 break;
             }
         }
+
 
         delete raiz; // libera memória
         return 0;
