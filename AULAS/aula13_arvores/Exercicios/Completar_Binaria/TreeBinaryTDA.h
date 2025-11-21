@@ -10,8 +10,9 @@ public:
 
     //Novos (Ex 3)
     virtual int size() const = 0;
-    // virtual int degree() const = 0;
-    // virtual int level() const = 0;
-    // virtual int height() const = 0;
+    virtual void print() const = 0;
+    virtual int degree() const = 0;
+    virtual int level() const = 0;
+    virtual int height() const = 0;
     
 };
