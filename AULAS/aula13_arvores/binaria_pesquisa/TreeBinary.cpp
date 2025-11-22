@@ -131,32 +131,22 @@ public:
         }
     }
 
-    // Remoção: implementação mínima que só encaminha para filhos.
-    // (Pode ser estendida para remoção completa de BST.)
+    // Ao remover o item é necessário que a arvore ainda satisfaça o criterio de organzição
+    // Primeiro, localiza-se o elemento a ser excluido e salve o endereço do seu pai
+    // A seguir, veririfica se é folha ou se tem filhos
+    // > Se folha: tornar nó vazio
+    // > Se um filho: colocar filho no lugar
+    // > se 2 filhos: localizar o maior elemento da subárvore esquerda ou o menor da subárvore direita para substituir o nó removido
+
     virtual void remove(int value) override
     {
-        if (value < this->item)
+        // Localizar Elemento
+        if (this == value)
         {
-            if (this->left)
-            {
-                TreeBinary *t = dynamic_cast<TreeBinary *>(this->left);
-                if (t) t->remove(value);
-            }
+                
         }
-        else if (value > this->item)
-        {
-            if (this->right)
-            {
-                TreeBinary *t = dynamic_cast<TreeBinary *>(this->right);
-                if (t) t->remove(value);
-            }
-        }
-        else
-        {
-            // Remoção do nó atual não implementada completamente aqui.
-            // Mantido intencionalmente mínimo para compilar; estenda conforme necessário.
-            cout << "remove(" << value << ") chamado — implementação completa não fornecida.\n";
-        }
+        
+
     }
 
     // =========================
@@ -196,22 +186,40 @@ public:
         }
     }
 
-    void printTree(int nivel = 0) const
+    void printTree(const std::string &prefix = "", bool isLast = true, bool isRoot = true) const
     {
-        for (int i = 0; i < nivel; ++i)
-            cout << "  ";
-        cout << this->item << endl;
-        if (this->left)
+        // Imprime nó atual (raiz não imprime conector)
+        if (isRoot)
         {
-            TreeBinary *t = dynamic_cast<TreeBinary *>(this->left);
-            if (t)
-                t->printTree(nivel + 1);
+            std::cout << this->item << std::endl;
         }
-        if (this->right)
+        else
         {
-            TreeBinary *t = dynamic_cast<TreeBinary *>(this->right);
+            std::cout << prefix << (isLast ? "└─ " : "├─ ") << this->item << std::endl;
+        }
+
+        // Coleta filhos em ordem (esquerda, direita)
+        std::vector<ABPTAD *> childs;
+        if (this->left)
+            childs.push_back(this->left);
+        if (this->right)
+            childs.push_back(this->right);
+
+        // Itera sobre filhos e chama recursivamente
+        for (size_t i = 0; i < childs.size(); ++i)
+        {
+            ABPTAD *c = childs[i];
+            bool last = (i == childs.size() - 1);
+            TreeBinary *t = dynamic_cast<TreeBinary *>(c);
             if (t)
-                t->printTree(nivel + 1);
+            {
+                std::string newPrefix;
+                if (isRoot)
+                    newPrefix = ""; // filhos da raiz começam sem prefixo adicional
+                else
+                    newPrefix = prefix + (isLast ? "   " : "│  ");
+                t->printTree(newPrefix, last, false);
+            }
         }
     }
 
@@ -274,21 +282,26 @@ public:
 
 int main()
 {
-    TreeBinary *arv = new TreeBinary(1);
-    TreeBinary *arv2 = new TreeBinary(2);
-    TreeBinary *arv3 = new TreeBinary(3);
-    TreeBinary *arv4 = new TreeBinary(4);
-    TreeBinary *arv5 = new TreeBinary(5);
+    TreeBinary *arv = new TreeBinary(5);
+    // TreeBinary *arv2 = new TreeBinary(2);
+    // TreeBinary *arv3 = new TreeBinary(3);
+    // TreeBinary *arv4 = new TreeBinary(4);
+    // TreeBinary *arv5 = new TreeBinary(5);
 
-    arv->addLeft(arv2);
-    arv->addRight(arv3);
-    arv2->addLeft(arv4);
-    arv3->addRight(arv5);
-
-
-    cout << "Item do nó raiz: " << arv->getItem() << endl;
-    cout << "Altura: " << arv->altura() << endl;
-
+    // arv->addLeft(arv2);
+    // arv->addRight(arv3);
+    // arv2->addLeft(arv4);
+    // arv3->addRight(arv5);
+    
+    arv->insert(1);
+    arv->insert(3);
+    arv->insert(4);
+    arv->insert(2);
+    arv->insert(8);
+    arv->insert(9);
+    arv->insert(6);
+    arv->insert(7);
+    
     // Transforma Arvore em Vetor
     vector<int> Tree_Vec;
     arv->TreeToVector(&Tree_Vec);
@@ -298,7 +311,7 @@ int main()
         cout << val << " ";
     }
     cout << endl;
-
+    
     // Ordena Vetor
     arv->OrdenedVector(&Tree_Vec);
     cout << "Vetor Ordenado: ";
@@ -307,10 +320,23 @@ int main()
         cout << val << " ";
     }
     cout << endl;
-
+    
     cout << "Árvore:" << endl;
     arv->printTree();
     
+    cout << "Testes ========================="          << endl;
+    cout << "Item do nó raiz: " << arv->getItem()       << endl;
+    cout << "Altura: " << arv->altura()                 << endl;
+    cout << "Fator: "  << arv->factor()                 << endl;
+    cout << "\n Removendo elementos: \n > Removendo 9 e 2" 
+         << arv->remove(9)                             
+         << arv->remove(2)                              << endl;
+
+    arv->printTree();
+
+
+
+
     delete arv;
     return 0;
 }
